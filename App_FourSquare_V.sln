@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App_FourSquare_V.UWP", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App_FourSquare_V.Android", "App_FourSquare_V\App_FourSquare_V.Android\App_FourSquare_V.Android.csproj", "{E3BB6771-C729-4900-93AF-A0E6F2F8620D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App_FourSquare_V", "App_FourSquare_V\App_FourSquare_V\App_FourSquare_V.csproj", "{8811D8DB-3848-4EA0-AA3A-F602D5FEF869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App_FourSquare_V", "App_FourSquare_V\App_FourSquare_V\App_FourSquare_V.csproj", "{8811D8DB-3848-4EA0-AA3A-F602D5FEF869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_FourSqueare", "Web_FourSqueare\Web_FourSqueare.csproj", "{B0834626-B3B0-45BD-B568-5F911689E0BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,22 @@ Global
 		{8811D8DB-3848-4EA0-AA3A-F602D5FEF869}.Release|x86.ActiveCfg = Release|Any CPU
 		{8811D8DB-3848-4EA0-AA3A-F602D5FEF869}.Release|x86.Build.0 = Release|Any CPU
 		{8811D8DB-3848-4EA0-AA3A-F602D5FEF869}.Release|x86.Deploy.0 = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|ARM.Build.0 = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|x64.Build.0 = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0834626-B3B0-45BD-B568-5F911689E0BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

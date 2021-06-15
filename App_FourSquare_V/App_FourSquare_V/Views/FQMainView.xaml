@@ -4,7 +4,7 @@
              x:Class="App_FourSquare_V.Views.FQMainView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Esta es la buena Jo puta!"
+            <Label Text="Esta es la buenaaaaaa Jo puta!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
