@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App_FourSquare_V.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace App_FourSquare_V
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new FQMainView();
         }
 
         protected override void OnStart()
