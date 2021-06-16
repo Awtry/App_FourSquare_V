@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App_FourSquare_V.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace App_FourSquare_V.Views
         public FQMainView()
         {
             InitializeComponent();
+
+            BindingContext = new FQViewModel();
         }
     }
 }

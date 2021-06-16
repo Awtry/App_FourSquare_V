@@ -15,7 +15,7 @@ namespace Web_FourSqueare.Models
 
     public class FQModel
     {
-        string ConnectionString = "Server=tcp:fqdatabase7.database.windows.net,1433;Initial Catalog=fqdatabase;Persist Security Info=False;User ID=fqdatabaseuser;Password=Fqdatabase70306;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        string ConnectionString = "Server=tcp:driveragfserver.database.windows.net,1433;Initial Catalog=DriverAGF7;Persist Security Info=False;User ID=driveragfuser;Password=Driveragf70306;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public int Id_Place { get; set; }
         public string Name { get; set; }
