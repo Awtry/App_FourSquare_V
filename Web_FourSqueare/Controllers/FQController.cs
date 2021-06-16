@@ -9,7 +9,7 @@ using Web_FourSqueare.Models;
 
 namespace Web_FourSqueare.Controllers
 {
-    [Route("/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FQController : ControllerBase
     {

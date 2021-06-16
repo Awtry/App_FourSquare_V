@@ -19,6 +19,7 @@ namespace Web_FourSqueare.Models
 
         public int Id_Place { get; set; }
         public string Name { get; set; }
+        public string Picture { get; set; }
         public string Location { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
@@ -43,6 +44,7 @@ namespace Web_FourSqueare.Models
                                 {
                                     Id_Place = (int)reader["Id_Place"],
                                     Name = reader["Name"].ToString(),
+                                    Picture = reader["Picture"].ToString(),
                                     Location = reader["Location"].ToString(),
                                     Latitude = (double)reader["Latitude"],
                                     Longitude = (double)reader["Longitude"]
