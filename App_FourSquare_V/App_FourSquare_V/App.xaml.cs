@@ -9,7 +9,7 @@ namespace App_FourSquare_V
     {
         public App()
         {
-            InitializeComponent();
+            InitializeComponent(); 
 
             MainPage = new FQMainView();
         }
