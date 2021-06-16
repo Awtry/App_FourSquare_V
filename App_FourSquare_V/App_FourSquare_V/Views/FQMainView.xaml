@@ -11,7 +11,7 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Load" Command="{Binding LoadCommand}"/>
+                <Button Text="Load" Command="{Binding LoadPlacesCommand}"/>
             </StackLayout>
 
             <CollectionView>

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace App_FourSquare_V.Service
 {
-    class ApiService
+    public class ApiService
     {
         private string ApiUrl = "qwertyuiop";
 
-        public async Task<ApiResponse> GetDataAsync(string controller)
+        public async Task<ResponseModel> GetDataAsync(string controller)
         {
             try
             {
@@ -25,17 +25,17 @@ namespace App_FourSquare_V.Service
 
                 if(!response.IsSuccessStatusCode)
                 {
-                    return new ApiResponse
+                    return new ResponseModel
                     {
                         IsSuccess = false,
                         Message = result
                     };
                 }
 
-                return JsonConvert.DeserializeObject<ApiResponse>(result);
+                return JsonConvert.DeserializeObject<ResponseModel>(result);
             }catch(Exception ex)
             {
-                return new ApiResponse
+                return new ResponseModel
                 {
                     IsSuccess = false,
                     Message = ex.Message

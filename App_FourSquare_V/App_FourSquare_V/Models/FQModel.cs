@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App_FourSquare_V.Models
 {
-    class FQModel
+    public class FQModel
     {
         public int Id_Place { get; set; }
         public string Name { get; set; }
