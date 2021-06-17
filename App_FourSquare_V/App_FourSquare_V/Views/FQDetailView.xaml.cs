@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace App_FourSquare_V.Views
@@ -19,6 +20,8 @@ namespace App_FourSquare_V.Views
             InitializeComponent();
 
             BindingContext = new FQDetailViewModel(FQ_VMain);
+
+            
         }
 
         public FQDetailView(FQViewModel FQ_VMain, FQModel placeSelected)
@@ -26,6 +29,30 @@ namespace App_FourSquare_V.Views
             InitializeComponent();
 
             BindingContext = new FQDetailViewModel(FQ_VMain, placeSelected);
+
+            FQMap.FQ = placeSelected;
+
+            FQMap.MoveToRegion(
+                MapSpan.FromCenterAndRadius(
+                    new Position(
+                        placeSelected.Latitude,
+                        placeSelected.Longitude
+                       ),
+                    Distance.FromMiles(.5)
+                )
+            );
+
+            FQMap.Pins.Add(
+                new Pin
+                {
+                    Type = PinType.Place,
+                    Label = placeSelected.Name,
+                    Position = new Position(
+                        placeSelected.Latitude,
+                        placeSelected.Longitude
+                    )
+                }
+             );
         }
 
       

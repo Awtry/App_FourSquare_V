@@ -21,6 +21,8 @@ namespace App_FourSquare_V.UWP
         {
             this.InitializeComponent();
 
+            Xamarin.FormsMaps.Init("AnvniotNMK44EH4B0O8lLLyG1iVJkAA0P26rAlKeGcKsZvRZoMGOVjHFBQDH9EIk");
+            //AnvniotNMK44EH4B0O8lLLyG1iVJkAA0P26rAlKeGcKsZvRZoMGOVjHFBQDH9EIk
             LoadApplication(new App_FourSquare_V.App());
         }
     }

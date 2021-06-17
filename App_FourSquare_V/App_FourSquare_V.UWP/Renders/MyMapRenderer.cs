@@ -36,7 +36,7 @@ namespace App_FourSquare_V.UWP.Renders
 
                 if (e.NewElement != null)
                 {
-                    FQ = (e.NewElement as MyMap).FQ;
+                    this.FQ = (e.NewElement as MyMap).FQ;
                     var formMap = (MyMap)e.NewElement;
                     NativeMap = Control as MapControl;
                     NativeMap.Children.Clear();
