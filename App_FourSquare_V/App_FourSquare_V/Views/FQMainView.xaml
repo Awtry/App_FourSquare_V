@@ -11,25 +11,18 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems >
-        <ToolbarItem FlyoutItem.IsVisible="True" Text="Agregar" Command="{Binding NewPlaceCommand}">
-            <ToolbarItem.IconImageSource>
-                <OnPlatform 
-                    x:TypeArguments="ImageSource"
-                    >
-
-                </OnPlatform>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
+        <ToolbarItem  Text="Add Place" Command="{Binding NewPlaceCommand}"/>
     </ContentPage.ToolbarItems>
 
 
     <ContentPage.Content>
         <StackLayout >
+            <Button Text="Add Place" Command="{Binding NewPlaceCommand}"/>
             <CollectionView
                 x:Name="Gas"
                 ItemsSource="{Binding Places}"
                 SelectionChangedCommand="{Binding SelectCommand}"
-                SelectedItem="{Binding PlaceSelectedCommand}"
+                SelectedItem="{Binding PlaceSelected}"
                 SelectionMode="Single">
 
                 <CollectionView.ItemTemplate>
@@ -48,7 +41,6 @@
 
 
                             </Grid.ColumnDefinitions>
-
 
                             <Grid x:Name="Photo"
                                   Grid.Column="0" 

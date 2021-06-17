@@ -11,6 +11,7 @@ namespace App_FourSquare_V.Service
     public class ApiService
     {
         private string ApiUrl = "https://webfoursquare.azurewebsites.net/";
+        
 
         public async Task<ResponseModel> GetDataAsync(string controller)
         {

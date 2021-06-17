@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CSS\NewFile1.txt" />
     <None Remove="Renders\MapRender" />
     <None Remove="Renders\MyMap" />
     <None Remove="Renders\NewFile1.txt" />

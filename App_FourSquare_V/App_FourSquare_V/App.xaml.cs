@@ -11,7 +11,7 @@ namespace App_FourSquare_V
         {
             InitializeComponent(); 
 
-            MainPage = new FQMainView();
+            MainPage = new NavigationPage(new Views.FQMainView());
         }
 
         protected override void OnStart()

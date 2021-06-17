@@ -50,18 +50,12 @@ namespace App_FourSquare_V.ViewModels
         //Revisar modo de uso final
 
         public Command LoadPlacesCommand { get; set; }
-        public Command NewPlaceCommand { get; set; }
-        public Command SelectCommand { get; set; }
 
-        Command _PlaceSelectedCommand;
-        public Command PlaceSelectedCommand => _PlaceSelectedCommand ?? (_PlaceSelectedCommand = new Command(SelectPlaceAction));
+        Command _NewPlaceCommand;
+        public Command NewPlaceCommand => _NewPlaceCommand ?? (_NewPlaceCommand = new Command(NewPlaceAction));
 
-       
-
-        //TODO: 
-        //NewPlaceCommand
-        //SelectCommand
-        //PlaceSelected
+        Command _SelectCommand;
+        public Command SelectCommand => _SelectCommand ?? (_SelectCommand = new Command(SelectPlaceAction));
 
         private List<FQModel> places;
         public List<FQModel> Places { get => places; set => SetProperty(ref places, value); }
@@ -75,18 +69,23 @@ namespace App_FourSquare_V.ViewModels
             LoadPlacesAction();
         }
 
-        private FQModel placeSelected;
+        FQModel placeSelected;
         public FQModel PlaceSelected
         {
             get => placeSelected;
             set => SetProperty(ref placeSelected, value);
         }
 
+        private void NewPlaceAction()
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new FQDetailView(this));
+        }
+
         private void SelectPlaceAction()
         {
             Application.Current.MainPage.Navigation.PushAsync(new FQDetailView(this, PlaceSelected));
         }
-
+      
         private async void LoadPlacesAction()
         {
             try

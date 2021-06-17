@@ -1,12 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:App_FourSquare_V.Converters"
              x:Class="App_FourSquare_V.Views.FQDetailView">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="ImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Text="Map" Command="{Binding MapCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+
+                <!-- Marca de la gasolina -->
+                <Label Text="Name : "/>
+                <Entry Text="{Binding FQName}"
+                       Placeholder="Brand name:"/>
+
+                <!-- Sucursal de la gasolina -->
+                <Label Text="Location: "/>
+                <Entry Text="{Binding FQLocation}"
+                        Placeholder="Branch name:"/>
+
+                <!-- Precio de Gasolina Latitud  -->
+                <Label Text="FourSquare's latitude :: "/>
+                <Entry Text="{Binding FQLatitude}"/>
+
+                <!-- Precio de Gasolina Longitude  -->
+                <Label Text="FourSquare's longitude :: "/>
+                <Entry Text="{Binding FQLongitude}"/>
+
+                <!-- Botón de obtener la longitud y la latitud  -->
+                <Button Text="Get gas station location " Command="{Binding GetLocation}"/>
+
+                <!-- Fotografía  -->
+                <Label Text="Gas Station Photo: "/>
+                <Image WidthRequest="500" Source="{Binding FQPicture , Converter={StaticResource ImageConverter}}"/>
+
+                <!-- Botón de tomar fotografía  -->
+                <Button Text="Take Photo" Command="{Binding takePictureCommand}"/>
+
+                <!-- Botón de seleccionar fotografía  -->
+                <Button Text="Choose Photo" Command="{Binding selectPictureCommand}"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
+
 </ContentPage>
