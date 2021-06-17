@@ -18,40 +18,96 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="20" VerticalOptions="StartAndExpand">
 
-                <!-- Marca de la gasolina -->
-                <Label Text="Name : "/>
-                <Entry Text="{Binding FQName}"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*" />
+                    <RowDefinition />
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <BoxView 
+                    Grid.Column="0"
+                    Grid.RowSpan="1"
+                    Color="CornflowerBlue" />
+                <StackLayout Margin="20,10,20,0" Padding="0,0,0,0">
+
+                    <!-- Marca de la gasolina -->
+                    <Label Text="Name : "/>
+                    <Entry Text="{Binding FQName}"
                        Placeholder="Brand name:"/>
 
-                <!-- Sucursal de la gasolina -->
-                <Label Text="Location: "/>
-                <Entry Text="{Binding FQLocation}"
+                    <!-- Sucursal de la gasolina -->
+                    <Label Text="Location: "/>
+                    <Entry Text="{Binding FQLocation}"
                         Placeholder="Branch name:"/>
 
-                <!-- Precio de Gasolina Latitud  -->
-                <Label Text="FourSquare's latitude :: "/>
-                <Entry Text="{Binding FQLatitude}"/>
+                    <!-- Precio de Gasolina Latitud  -->
+                    <Label Text="FourSquare's latitude :: "/>
+                    <Entry Text="{Binding FQLatitude}"/>
 
-                <!-- Precio de Gasolina Longitude  -->
-                <Label Text="FourSquare's longitude :: "/>
-                <Entry Text="{Binding FQLongitude}"/>
+                    <!-- Precio de Gasolina Longitude  -->
+                    <Label Text="FourSquare's longitude :: "/>
+                    <Entry Text="{Binding FQLongitude}"/>
 
-                <!-- Botón de obtener la longitud y la latitud  -->
-                <Button Text="Get gas station location " Command="{Binding GetLocation}"/>
+                    <!-- Botón de obtener la longitud y la latitud  -->
+                    <Button Text="Get gas station location " Command="{Binding GetLocation}"/>
 
-                <!-- Fotografía  -->
-                <Label Text="Gas Station Photo: "/>
-                <Image WidthRequest="500" Source="{Binding FQPicture , Converter={StaticResource ImageConverter}}"/>
+                    <!-- Fotografía  -->
+                    <Label Text="Gas Station Photo: "/>
+                    <Image WidthRequest="250" Source="{Binding FQPicture , Converter={StaticResource ImageConverter}}"/>
 
-                <!-- Botón de tomar fotografía  -->
-                <Button Text="Take Photo" Command="{Binding takePictureCommand}"/>
+                    <!-- Botón de tomar fotografía  -->
+                    <Button Text="Take Photo" Command="{Binding takePictureCommand}"/>
 
-                <!-- Botón de seleccionar fotografía  -->
-                <Button Text="Choose Photo" Command="{Binding selectPictureCommand}"/>
+                    <!-- Botón de seleccionar fotografía  -->
+                    <Button Text="Choose Photo" Command="{Binding selectPictureCommand}"/>
 
-            </StackLayout>
+                </StackLayout>
+
+
+                <BoxView 
+                     Grid.Column="1"
+                     Grid.RowSpan="1"
+                     Color="Blue" />
+                <Label Grid.Column="1"
+                       Grid.RowSpan="1"
+                    Text="Mapa Aquí "
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                
+                
+                
+                <BoxView 
+                     Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                    Color="Purple" />
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Alan Guzmán"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Jorge Vera"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Label 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Text="Javier Hernandez"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                
+                
+            </Grid>
+            
         </ScrollView>
     </ContentPage.Content>
 
