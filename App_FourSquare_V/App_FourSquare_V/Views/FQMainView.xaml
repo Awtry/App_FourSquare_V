@@ -29,7 +29,7 @@
                 x:Name="Gas"
                 ItemsSource="{Binding Places}"
                 SelectionChangedCommand="{Binding SelectCommand}"
-                SelectedItem="{Binding PlaceSelected}"
+                SelectedItem="{Binding PlaceSelectedCommand}"
                 SelectionMode="Single">
 
                 <CollectionView.ItemTemplate>
@@ -56,7 +56,7 @@
                                   Margin="0,10,0,0">
 
                                 <Image 
-                                   Source="{Binding Photo, Converter={StaticResource ImageConverter}}"
+                                   Source="{Binding Picture, Converter={StaticResource ImageConverter}}"
                                    WidthRequest="100"
                                    HeightRequest="50"
                                 />

@@ -15,22 +15,22 @@ namespace Web_FourSqueare.Models
 
     public class FQModel
     {
-        string ConnectionString = "Server=tcp:driverjivhserver.database.windows.net,1433;Initial Catalog=FourSquare;Persist Security Info=False;User ID=driverjivhuser;Password=Joderjorge@mia22;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        /*string ConnectionString = "Server=tcp:driverjivhserver.database.windows.net,1433;Initial Catalog=FourSquare;Persist Security Info=False;User ID=driverjivhuser;Password=Joderjorge@mia22;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";*/
 
-        public int Id_Place { get; set; }
+        public int id_Place { get; set; }
         public string Name { get; set; }
-        public string Picture { get; set; }
         public string Location { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string Picture { get; set; }
 
 
-        public ResponseModel GetAll() //Descargar Nugget System.Data.SqlClient
+        public ResponseModel GetAll(string connectionString) //Descargar Nugget System.Data.SqlClient
         {
             List<FQModel> list = new List<FQModel>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
                     string comsql = "SELECT * FROM Place";
@@ -42,7 +42,7 @@ namespace Web_FourSqueare.Models
                             {
                                 list.Add(new FQModel
                                 {
-                                    Id_Place = (int)reader["Id_Place"],
+                                    id_Place = (int)reader["id_Place"],
                                     Name = reader["Name"].ToString(),
                                     Picture = reader["Picture"].ToString(),
                                     Location = reader["Location"].ToString(),
@@ -68,6 +68,63 @@ namespace Web_FourSqueare.Models
                 {
                     IsSuccess = false,
                     Message = $"Cuidao ! Ha habido un problema: {ex.Message}",
+                    Result = null
+                };
+            }
+        }
+
+        public ResponseModel Add(string connectionString)
+        {
+            try
+            {
+                object newID;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    /*string comsql = "INSERT INTO Place (Name, Location, Latitude, Longitude, Picture) VALUES(@Name, @Location, @Latitude, @Longitude, @Picture);";*/
+
+                    string comsql = "INSERT INTO Place (Name, Location, Latitude, Longitude, Picture) VALUES(@Name, @Location, @Latitude, @Longitude, @Picture); SELECT @@IDENTITY;";
+
+                    using (SqlCommand cmd = new SqlCommand(comsql, connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Name", Name);
+                        cmd.Parameters.AddWithValue("@Location", Location);
+                        cmd.Parameters.AddWithValue("@Latitude", Latitude);
+                        cmd.Parameters.AddWithValue("@Longitude", Longitude);
+                        cmd.Parameters.AddWithValue("@Picture", Picture);
+                        newID = cmd.ExecuteScalar();
+
+                        if(newID != null && newID.ToString().Length > 0)
+                        {
+                            return new ResponseModel
+                            {
+                                IsSuccess = true,
+                                Message = "No han habido problemas al cargar los datos #Winning",
+                                Result = newID
+                            };
+                        }
+                        else
+                        {
+                            return new ResponseModel
+                            {
+                                IsSuccess = false,
+                                Message = "Dommage ! Hubo un error",
+                                Result = newID
+                            };
+                        }
+                    }
+
+                    
+
+                }
+            }
+            catch(Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = $"Dommage ! El error es: {ex.Message}",
                     Result = null
                 };
             }

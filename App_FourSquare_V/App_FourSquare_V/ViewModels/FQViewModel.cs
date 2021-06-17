@@ -7,6 +7,7 @@ using System.Text;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using App_FourSquare_V.Views;
 
 namespace App_FourSquare_V.ViewModels
 {
@@ -15,7 +16,7 @@ namespace App_FourSquare_V.ViewModels
 
         #region Alan
 
-        /* Command _LoadCommand;
+        /* Command _LoadCommand;UpUED¿
          public Command LoadCommand => _LoadCommand ?? (_LoadCommand = new Command(LoadAction));*/
 
         /* List<FQModel> _FQList;
@@ -42,11 +43,25 @@ namespace App_FourSquare_V.ViewModels
 
         private void LoadAction()
         {
-            LoadPlace();
+            LoadPlace(); 
         }*/
         #endregion
+        
+        //Revisar modo de uso final
 
         public Command LoadPlacesCommand { get; set; }
+        public Command NewPlaceCommand { get; set; }
+        public Command SelectCommand { get; set; }
+
+        Command _PlaceSelectedCommand;
+        public Command PlaceSelectedCommand => _PlaceSelectedCommand ?? (_PlaceSelectedCommand = new Command(SelectPlaceAction));
+
+       
+
+        //TODO: 
+        //NewPlaceCommand
+        //SelectCommand
+        //PlaceSelected
 
         private List<FQModel> places;
         public List<FQModel> Places { get => places; set => SetProperty(ref places, value); }
@@ -58,6 +73,18 @@ namespace App_FourSquare_V.ViewModels
             LoadPlacesCommand = new Command(LoadPlacesAction);
 
             LoadPlacesAction();
+        }
+
+        private FQModel placeSelected;
+        public FQModel PlaceSelected
+        {
+            get => placeSelected;
+            set => SetProperty(ref placeSelected, value);
+        }
+
+        private void SelectPlaceAction()
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new FQDetailView(this, PlaceSelected));
         }
 
         private async void LoadPlacesAction()
@@ -89,7 +116,6 @@ namespace App_FourSquare_V.ViewModels
                 IsBusy = false;
             }
         }
-
         
     }
 }

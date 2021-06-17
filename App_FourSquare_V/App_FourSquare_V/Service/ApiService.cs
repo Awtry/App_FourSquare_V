@@ -42,5 +42,41 @@ namespace App_FourSquare_V.Service
                 };
             }
         }
+
+        public async Task<ResponseModel> PostDataAsync(string controller, object data)
+        {
+            try
+            {
+                var serializeData = JsonConvert.SerializeObject(data);
+                var content = new StringContent(serializeData, Encoding.UTF8, "application/json");
+
+                var client = new HttpClient
+                {
+                    BaseAddress = new System.Uri(ApiUrl)
+                };
+                var response = await client.PostAsync(controller, content);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new ResponseModel
+                    {
+                        IsSuccess = false,
+                        Message = result
+                    };
+                }
+
+                return JsonConvert.DeserializeObject<ResponseModel>(result);
+
+            }
+            catch(Exception ex)
+            {
+                    return new ResponseModel
+                    {
+                        IsSuccess = false,
+                        Message = ex.Message
+                    };
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +14,46 @@ namespace Web_FourSqueare.Controllers
     [ApiController]
     public class FQController : ControllerBase
     {
+
+        private readonly IConfiguration Configuration;
+
+        public FQController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+
         // GET: <FQController>
         [HttpGet]
         public ResponseModel Get()
         {
-            return new FQModel().GetAll();
+            return new FQModel().GetAll(Configuration.GetConnectionString("MySQL"));
         }
 
         // GET api/<FQController>/5
-       /* [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }*/
+        /* [HttpGet("{id}")]
+         public string Get(int id)
+         {
+             return "value";
+         }*/
 
         // POST api/<FQController>
-       /* [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public ResponseModel Post([FromBody] FQModel FQ)
         {
-        }*/
+            return FQ.Add(Configuration.GetConnectionString("MySQL"));
+        }
 
         // PUT api/<FQController>/5
-       /* [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }*/
+        /* [HttpPut("{id}")]
+         public void Put(int id, [FromBody] string value)
+         {
+         }*/
 
         // DELETE api/<FQController>/5
-       /* [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
+        /* [HttpDelete("{id}")]
+         public void Delete(int id)
+         {
+         }*/
     }
 }

@@ -11,5 +11,6 @@ namespace App_FourSquare_V.Models
         public string Location { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string Picture { get; set; }
     }
 }
