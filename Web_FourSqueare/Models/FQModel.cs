@@ -56,7 +56,7 @@ namespace Web_FourSqueare.Models
                     return new ResponseModel
                     {
                         IsSuccess = true,
-                        Message  =  "No han habido problemas al cargar los datos #Winning",
+                        Message = "No han habido problemas al cargar los datos #Winning",
                         Result = list
                     };
 
@@ -68,6 +68,54 @@ namespace Web_FourSqueare.Models
                 {
                     IsSuccess = false,
                     Message = $"Cuidao ! Ha habido un problema: {ex.Message}",
+                    Result = null
+                };
+            }
+        }
+
+        public ResponseModel GetById(string connectionString, int id)
+        {
+            FQModel FQ = new FQModel();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string comsql = "SELECT * FROM Place WHERE id_Place = @id_Place";
+                    using (SqlCommand cmd = new SqlCommand(comsql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@id_Place", id);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                FQ = new FQModel
+                                {
+                                    id_Place = (int)reader["id_Place"],
+                                    Name = reader["Name"].ToString(),
+                                    Picture = reader["Picture"].ToString(),
+                                    Location = reader["Location"].ToString(),
+                                    Latitude = (double)reader["Latitude"],
+                                    Longitude = (double)reader["Longitude"]
+                                };
+                            }
+                        }
+                    }
+
+                    return new ResponseModel
+                    {
+                        IsSuccess = true,
+                        Message = "No han habido problemas al cargar el dato #Winning",
+                        Result = FQ
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = $"Dommage ! Hubo un error: {ex.Message}",
                     Result = null
                 };
             }
@@ -95,7 +143,7 @@ namespace Web_FourSqueare.Models
                         cmd.Parameters.AddWithValue("@Picture", Picture);
                         newID = cmd.ExecuteScalar();
 
-                        if(newID != null && newID.ToString().Length > 0)
+                        if (newID != null && newID.ToString().Length > 0)
                         {
                             return new ResponseModel
                             {
@@ -114,12 +162,9 @@ namespace Web_FourSqueare.Models
                             };
                         }
                     }
-
-                    
-
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResponseModel
                 {
@@ -129,5 +174,84 @@ namespace Web_FourSqueare.Models
                 };
             }
         }
+    
+        
+        public ResponseModel Update(string connectionString, int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string comsql = "UPDATE Place SET Name = @Name, Location = @Location, Latitude = @Latitude, Longitude = @Longitude, Picture = @Picture WHERE id_Place = @id_Place;  SELECT @@IDENTITY;";
+
+                    using (SqlCommand cmd = new SqlCommand(comsql, conn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Name", Name);
+                        cmd.Parameters.AddWithValue("@Location", Location);
+                        cmd.Parameters.AddWithValue("@Latitude", Latitude);
+                        cmd.Parameters.AddWithValue("@Longitude", Longitude);
+                        cmd.Parameters.AddWithValue("@Picture", Picture);
+                        cmd.Parameters.AddWithValue("@id_Place", id);
+                        cmd.ExecuteNonQuery();
+
+                        return new ResponseModel
+                        {
+                            IsSuccess = true,
+                            Message = "´The Place was updated successfully #Winning",
+                            Result = id
+                        };
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = $"The Place was no updated, here is the problem mate: ({ex.Message})",
+                    Result = null
+                };
+            }
+        }
+
+        public ResponseModel Delete(string connectionString, int id)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string comsql = "DELETE FROM Place WHERE id_Place = @id_Place;";
+                    using (SqlCommand cmd = new SqlCommand(comsql, conn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id_Place", id);
+                        cmd.ExecuteNonQuery();
+
+                        return new ResponseModel
+                        {
+                            IsSuccess = true,
+                            Message = "El lugar se eliminó con éxito",
+                            Result = id
+                        };
+
+                    }
+                }
+            }catch(Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = $"Se generó un error al eliminar el lugar: {ex.Message}",
+                    Result = null
+                };
+            }
+        }
+    
     }
 }

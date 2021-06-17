@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="App_FourSquare_V.UWP.MapWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App_FourSquare_V.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Image 
+            x:Name="WindowPicture"
+            Width="120"/>
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            Background="DarkRed"
+            Opacity=".67"
+            Padding="20,0,20,0">
+
+            <StackPanel
+                Margin="20,0,20,0">
+                <TextBlock 
+                           x:Name="WindowName"
+                           Foreground="Black"
+                           FontWeight="Bold"
+                           d:Text="Nombre"/>
+                <TextBlock 
+                    x:Name="WindowLatitude"
+                    d:Text="Latitud"/>
+
+                <TextBlock 
+                    x:Name="WindowLongitude"
+                    d:Text="Longitude"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

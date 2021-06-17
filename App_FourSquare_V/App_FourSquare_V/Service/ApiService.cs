@@ -78,5 +78,73 @@ namespace App_FourSquare_V.Service
                     };
             }
         }
+
+        public async Task<ResponseModel> PutDataAsync(string controller, object data)
+        {
+            try
+            {
+                var serializeData = JsonConvert.SerializeObject(data);
+                var content = new StringContent(serializeData, Encoding.UTF8, "application/json");
+
+                var client = new HttpClient
+                {
+                    BaseAddress = new System.Uri(ApiUrl)
+                };
+                var response = await client.PutAsync(controller, content);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new ResponseModel
+                    {
+                        IsSuccess = false,
+                        Message = result
+                    };
+                }
+
+                return JsonConvert.DeserializeObject<ResponseModel>(result);
+            }
+            catch(Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        public async Task<ResponseModel> DeleteDataAsync(string controller, int id)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new System.Uri(ApiUrl)
+                };
+                var response = await client.DeleteAsync(controller + "/" + id.ToString());
+                var result = await response.Content.ReadAsStringAsync();
+
+                //Mensaje de mal funcionamiento en caso de que ocurra
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new ResponseModel
+                    {
+                        IsSuccess = false,
+                        Message = "Dommage ! Hubo un error al eliminar el lugar"
+                    };
+                }
+
+                return JsonConvert.DeserializeObject<ResponseModel>(result);
+            }
+            catch (Exception ex)
+            {
+                return new ResponseModel
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
     }
 }

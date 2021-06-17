@@ -31,11 +31,11 @@ namespace Web_FourSqueare.Controllers
         }
 
         // GET api/<FQController>/5
-        /* [HttpGet("{id}")]
-         public string Get(int id)
-         {
-             return "value";
-         }*/
+        [HttpGet("{id}")]
+        public ResponseModel Get(int id)
+        {
+            return new FQModel().GetById(Configuration.GetConnectionString("MySQL"), id);
+        }
 
         // POST api/<FQController>
         [HttpPost]
@@ -44,16 +44,20 @@ namespace Web_FourSqueare.Controllers
             return FQ.Add(Configuration.GetConnectionString("MySQL"));
         }
 
+        
         // PUT api/<FQController>/5
-        /* [HttpPut("{id}")]
-         public void Put(int id, [FromBody] string value)
-         {
-         }*/
+        [HttpPut("{id}")]
+        public ResponseModel Put(int id, [FromBody] FQModel FQ)
+        {
+        return FQ.Update(Configuration.GetConnectionString("MySQL"), id);
+        }
 
         // DELETE api/<FQController>/5
-        /* [HttpDelete("{id}")]
-         public void Delete(int id)
-         {
-         }*/
+        [HttpDelete("{id}")]
+        public ResponseModel Delete(int id)
+        {
+            return new FQModel().Delete(Configuration.GetConnectionString("MySQL"), id);
+        }
+        
     }
 }
