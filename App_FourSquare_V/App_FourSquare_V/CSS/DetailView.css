@@ -1,6 +1,5 @@
 ﻿^stacklayout > button {
-    background-color: #44c767;
-    border-radius: 28;
+    background-color: #B480F0;
     border: 1 solid #18ab29;
     display: inline-block;
     cursor: pointer;
@@ -9,12 +8,14 @@
     font-size: 17;
     padding: 16 31;
     text-decoration: none;
-    text-shadow: 0 1 0 #2f6627;
+    text-shadow: #ffffff #ffffff #ffffff #E5E0B3;
 }
 
+
+
+
 #getLocation {
-    background-color: #6F2DA8;
-    border-radius: 28;
+    background-color: #D2A41C;
     border: 1 solid #6F2DA8;
     display: inline-block;
     cursor: pointer;
@@ -23,5 +24,31 @@
     font-size: 17;
     padding: 16 31;
     text-decoration: none;
-    text-shadow: 0 1 0 #B200ED;
+    text-shadow: 1 1 2 #B200ED;
+}
+
+#saveButton {
+    background-color: #5FCA9F;
+    border: 1 solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17;
+    padding: 16 31;
+    text-decoration: none;
+    text-shadow: 1 1 2 #2f6627;
+}
+
+#deleteButton {
+    background-color: #ff7c70;
+    border: 1 solid #18ab29;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17;
+    padding: 16 31;
+    text-decoration: none;
+    text-shadow: 1 1 2 #2f6627;
 }

@@ -12,17 +12,14 @@
         <StyleSheet Source="/CSS/DetailView.css"/>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
-        <ToolbarItem Text="Delete" Command="{Binding DeleteCommand}"/>
-    </ContentPage.ToolbarItems>
+  
 
     <ContentPage.Content>
         <ScrollView>
 
             <Grid x:Name="GridPrincipal">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="15*" />
                     <RowDefinition />
 
                 </Grid.RowDefinitions>
@@ -33,30 +30,30 @@
 
                 <BoxView 
                         Grid.Column="0"
-                        Grid.RowSpan="1"
-                        Color="CornflowerBlue" />
-                <StackLayout Margin="20,10,20,0" Padding="0,0,0,0">
+                        Grid.Row="0"
+                        Color="#79B0BE" />
+                <StackLayout Margin="20,10,20,0" Padding="0,0,0,10">
 
                     <!-- Marca de la gasolina -->
                     <Label Text="Name : "/>
                     <Entry Text="{Binding FQName}"
-                           Placeholder="Brand name:"/>
+                           Placeholder="Place's name:"/>
 
                     <!-- Sucursal de la gasolina -->
                     <Label Text="Location: "/>
                     <Entry Text="{Binding FQLocation}"
-                            Placeholder="Branch name:"/>
+                            Placeholder="Place's location:"/>
 
                     <!-- Precio de Gasolina Latitud  -->
-                    <Label Text="FourSquare's latitude :: "/>
+                    <Label Text="FourSquare's latitude: "/>
                     <Entry Text="{Binding FQLatitude}"/>
 
                     <!-- Precio de Gasolina Longitude  -->
-                    <Label Text="FourSquare's longitude :: "/>
+                    <Label Text="FourSquare's longitude: "/>
                     <Entry Text="{Binding FQLongitude}"/>
 
                     <!-- Botón de obtener la longitud y la latitud  -->
-                    <Button x:Name="getLocation" Grid.ColumnSpan="1" ClassId="getLocation" Text="Get gas station location " Command="{Binding GetLocationCommand}"/>
+                    <Button x:Name="getLocation" Grid.ColumnSpan="1" ClassId="getLocation" Text="Get place's location " Command="{Binding GetLocationCommand}"/>
 
 
                     <!-- Fotografía  -->
@@ -64,7 +61,7 @@
                     <!-- Botón de tomar fotografía  -->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                            <Button x:Name="takePhoto" Text="Take Photo" Command="{Binding takePictureCommand}"/>
+                            <Button x:Name="takePhoto" StyleClass="primary" Text="Take Photo" Command="{Binding takePictureCommand}"/>
                         </StackLayout>
                         <!-- Botón de seleccionar fotografía  -->
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
@@ -72,12 +69,12 @@
                         </StackLayout>
                     </StackLayout>
 
-                    <Label Text="Gas Station Photo: "/>
+                    <Label Text="Place's photo" HorizontalOptions="Center" FontSize="30"/>
                     <Image WidthRequest="250" Source="{Binding FQPicture , Converter={StaticResource ImageConverter}}"/>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                        <Button Text="Save" Command="{Binding SaveCommand}"/>
-                        <Button Text="Delete" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="deleteButton" ClassId="deleteButton" Text="Delete" Command="{Binding DeleteCommand}"/>
+                        <Button x:Name="saveButton" ClassId="saveButton" Text="Save" Command="{Binding SaveCommand}"/>
                     </StackLayout>
 
                 </StackLayout>
@@ -85,37 +82,34 @@
 
                 <BoxView 
                          Grid.Column="1"
-                         Grid.RowSpan="1"
+                         Grid.Row="0"
                          Color="Blue" />
 
-                <renders:MyMap x:Name="FQMap" Grid.Column="1" Grid.RowSpan="1"/>
-
-
+                <renders:MyMap x:Name="FQMap" Grid.Column="1" Grid.Row="0"/>
 
                 <BoxView 
                          Grid.Row="1"
                          Grid.ColumnSpan="2"
-                        Color="Purple" />
+                        Color="Indigo" />
                 <Label 
                         Grid.Row="1"
                         Grid.Column="0"
-                        Text="Alan Guzmán"
+                        Text="@Alan Marvin Guzmán Flores"
                         HorizontalOptions="Center"
                         VerticalOptions="Center" />
                 <Label 
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="Jorge Vera"
+                        Text="@Jorge Ismael Vera Huerta"
                         HorizontalOptions="Center"
                         VerticalOptions="Center" />
                 <Label 
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        Text="Javier Hernandez"
+                        Text="@Javier Antonio Hernandez Barragán"
                         HorizontalOptions="Center"
                         VerticalOptions="Center" />
-
-
+                
             </Grid>
 
         </ScrollView>
