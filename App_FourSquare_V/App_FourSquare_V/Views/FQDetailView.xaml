@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <converters:ImageConverter x:Key="ImageConverter"/>
         </ResourceDictionary>
+        <StyleSheet Source="/CSS/DetailView.css"/>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
@@ -19,32 +20,32 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <Grid>
+            <Grid x:Name="GridPrincipal">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*" />
                     <RowDefinition />
-                    
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <BoxView 
-                    Grid.Column="0"
-                    Grid.RowSpan="1"
-                    Color="CornflowerBlue" />
+                        Grid.Column="0"
+                        Grid.RowSpan="1"
+                        Color="CornflowerBlue" />
                 <StackLayout Margin="20,10,20,0" Padding="0,0,0,0">
 
                     <!-- Marca de la gasolina -->
                     <Label Text="Name : "/>
                     <Entry Text="{Binding FQName}"
-                       Placeholder="Brand name:"/>
+                           Placeholder="Brand name:"/>
 
                     <!-- Sucursal de la gasolina -->
                     <Label Text="Location: "/>
                     <Entry Text="{Binding FQLocation}"
-                        Placeholder="Branch name:"/>
+                            Placeholder="Branch name:"/>
 
                     <!-- Precio de Gasolina Latitud  -->
                     <Label Text="FourSquare's latitude :: "/>
@@ -55,56 +56,68 @@
                     <Entry Text="{Binding FQLongitude}"/>
 
                     <!-- Botón de obtener la longitud y la latitud  -->
-                    <Button Text="Get gas station location " Command="{Binding GetLocationCommand}"/>
+                    <Button x:Name="getLocation" Grid.ColumnSpan="1" ClassId="getLocation" Text="Get gas station location " Command="{Binding GetLocationCommand}"/>
+
 
                     <!-- Fotografía  -->
+
+                    <!-- Botón de tomar fotografía  -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Button x:Name="takePhoto" Text="Take Photo" Command="{Binding takePictureCommand}"/>
+                        </StackLayout>
+                        <!-- Botón de seleccionar fotografía  -->
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Button x:Name="selectPhoto" Text="Choose Photo" Command="{Binding selectPictureCommand}"/>
+                        </StackLayout>
+                    </StackLayout>
+
                     <Label Text="Gas Station Photo: "/>
                     <Image WidthRequest="250" Source="{Binding FQPicture , Converter={StaticResource ImageConverter}}"/>
 
-                    <!-- Botón de tomar fotografía  -->
-                    <Button Text="Take Photo" Command="{Binding takePictureCommand}"/>
-
-                    <!-- Botón de seleccionar fotografía  -->
-                    <Button Text="Choose Photo" Command="{Binding selectPictureCommand}"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                        <Button Text="Save" Command="{Binding SaveCommand}"/>
+                        <Button Text="Delete" Command="{Binding DeleteCommand}"/>
+                    </StackLayout>
 
                 </StackLayout>
 
 
                 <BoxView 
-                     Grid.Column="1"
-                     Grid.RowSpan="1"
-                     Color="Blue" />
-           
+                         Grid.Column="1"
+                         Grid.RowSpan="1"
+                         Color="Blue" />
+
                 <renders:MyMap x:Name="FQMap" Grid.Column="1" Grid.RowSpan="1"/>
 
 
 
                 <BoxView 
-                     Grid.Row="1"
-                     Grid.ColumnSpan="2"
-                    Color="Purple" />
+                         Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                        Color="Purple" />
                 <Label 
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="Alan Guzmán"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Alan Guzmán"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
                 <Label 
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="Jorge Vera"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="Jorge Vera"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
                 <Label 
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    Text="Javier Hernandez"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
-                
-                
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Text="Javier Hernandez"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
+
+
             </Grid>
-            
+
         </ScrollView>
     </ContentPage.Content>
 

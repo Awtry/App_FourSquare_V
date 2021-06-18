@@ -6,7 +6,7 @@ namespace App_FourSquare_V.Models
 {
     public class FQModel
     {
-        public int Id_Place { get; set; }
+        public int id_Place { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public double Latitude { get; set; }

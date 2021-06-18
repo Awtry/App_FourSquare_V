@@ -47,9 +47,9 @@ namespace Web_FourSqueare.Controllers
         
         // PUT api/<FQController>/5
         [HttpPut("{id}")]
-        public ResponseModel Put(int id, [FromBody] FQModel FQ)
+        public ResponseModel Put([FromBody] FQModel FQ, int id)
         {
-        return FQ.Update(Configuration.GetConnectionString("MySQL"), id);
+             return FQ.Update(Configuration.GetConnectionString("MySQL"), id);
         }
 
         // DELETE api/<FQController>/5

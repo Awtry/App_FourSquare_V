@@ -18,30 +18,55 @@ namespace App_FourSquare_V.UWP.Renders
 {
     public class MyMapRender : MapRenderer
     {
-        MapControl NativeMap; FQModel FQ;
+        MapControl NativeMap;
+        FQModel FQ;
         MapWindow FQWindow; //Agregar UserControl FQWindow en carpeta global UWP 
         bool IsVisible = false;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Map> e)
         {
+
             base.OnElementChanged(e);
 
-                if (e.OldElement != null)
+            if (e.OldElement != null)
+            {
+                NativeMap.MapElementClick -= OnMapElementClick;
+                NativeMap.Children.Clear();
+                NativeMap = null;
+                FQWindow = null;
+            }
+            if (e.NewElement != null)
+            {
+                this.FQ = (e.NewElement as MyMap).FQ;
+                var formMap = (MyMap)e.NewElement;
+                NativeMap = Control as MapControl;
+                NativeMap.Children.Clear();
+                NativeMap.MapElementClick += OnMapElementClick;
+
+
+                if (FQ == null)
                 {
-                    NativeMap.MapElementClick -= OnMapElementClick;
-                    NativeMap.Children.Clear();
-                    NativeMap = null;
-                    FQWindow = null;
+                    var position = new BasicGeoposition
+                    {
+                        Latitude = 0,
+                        Longitude = 0
+                    };
+
+                    var point = new Geopoint(position);
+
+                    var mapIcon = new MapIcon();
+                    mapIcon.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///pin.png"));
+
+                    //Agregar PNG en la carpeta general de UWP
+
+                    mapIcon.CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible;
+                    mapIcon.Location = point;
+                    mapIcon.NormalizedAnchorPoint = new Windows.Foundation.Point(0.5, 1.0);
+
+                    NativeMap.MapElements.Add(mapIcon);
                 }
-
-                if (e.NewElement != null)
+                else
                 {
-                    this.FQ = (e.NewElement as MyMap).FQ;
-                    var formMap = (MyMap)e.NewElement;
-                    NativeMap = Control as MapControl;
-                    NativeMap.Children.Clear();
-                    NativeMap.MapElementClick += OnMapElementClick;
-
                     var position = new BasicGeoposition
                     {
                         Latitude = FQ.Latitude,
@@ -61,6 +86,11 @@ namespace App_FourSquare_V.UWP.Renders
 
                     NativeMap.MapElements.Add(mapIcon);
                 }
+
+
+
+            }
+
         }
 
         private void OnMapElementClick(MapControl sender, MapElementClickEventArgs args)

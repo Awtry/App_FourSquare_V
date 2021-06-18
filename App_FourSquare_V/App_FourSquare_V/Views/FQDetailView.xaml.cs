@@ -1,4 +1,5 @@
 ﻿using App_FourSquare_V.Models;
+using App_FourSquare_V.Service;
 using App_FourSquare_V.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -30,17 +31,21 @@ namespace App_FourSquare_V.Views
 
             BindingContext = new FQDetailViewModel(FQ_VMain, placeSelected);
 
+            placeSelected.Picture = new ImageService().SaveImageFromBase64(placeSelected.Picture, placeSelected.id_Place);
             FQMap.FQ = placeSelected;
 
-            FQMap.MoveToRegion(
-                MapSpan.FromCenterAndRadius(
-                    new Position(
-                        placeSelected.Latitude,
-                        placeSelected.Longitude
-                       ),
-                    Distance.FromMiles(.5)
-                )
-            );
+            if (placeSelected != null)
+            {
+                FQMap.MoveToRegion(
+                     MapSpan.FromCenterAndRadius(
+                       new Position(
+                           placeSelected.Latitude,
+                           placeSelected.Longitude
+                          ),
+                       Distance.FromMiles(.5)
+                    )
+                 );
+            }
 
             FQMap.Pins.Add(
                 new Pin
@@ -53,9 +58,11 @@ namespace App_FourSquare_V.Views
                     )
                 }
              );
+
+
         }
 
-      
 
     }
+
 }

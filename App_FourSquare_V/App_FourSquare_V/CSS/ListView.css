@@ -1,1 +1,13 @@
-﻿
+﻿#addPlace {
+    background-color: #6F2DA8;
+    border-radius: 28;
+    border: 1 solid #6F2DA8;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 17;
+    padding: 16 31;
+    text-decoration: none;
+    text-shadow: 0 1 0 #B200ED;
+}

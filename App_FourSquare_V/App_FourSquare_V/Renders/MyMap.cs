@@ -9,5 +9,6 @@ namespace App_FourSquare_V.Renders
     public class MyMap : Map
     {
         public FQModel FQ;
+       // public FQMapAuxModel FQMapAux;
     }
 }

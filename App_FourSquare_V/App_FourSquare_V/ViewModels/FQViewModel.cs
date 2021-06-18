@@ -85,12 +85,22 @@ namespace App_FourSquare_V.ViewModels
         {
             Application.Current.MainPage.Navigation.PushAsync(new FQDetailView(this, PlaceSelected));
         }
-      
-        private async void LoadPlacesAction()
+
+        public void Reload_Places()
+        {
+            LoadPlaces();
+        }
+
+        private void LoadPlacesAction()
+        {
+            LoadPlaces();
+        }
+
+        private async void LoadPlaces()
         {
             try
             {
-                Debug.WriteLine($"Ejecutando la carga de lugares desde la web api");
+                Debug.WriteLine($"Getting places from WebApi");
 
                 IsBusy = true;
                 Places.Clear();
@@ -102,13 +112,13 @@ namespace App_FourSquare_V.ViewModels
                 }
                 else
                 {
-                    Debug.WriteLine($"Se regreso un null al consultar la web api:  { response.Message}");
+                    Debug.WriteLine($"There's been a null while querying the API  { response.Message}");
                 }
             }
             catch (Exception ex)
             {
 
-                Debug.WriteLine($"Se genero un error, Constructor FQViewModel: {ex.Message}");
+                Debug.WriteLine($"Error, Constructor FQViewModel: {ex.Message}");
             }
             finally
             {

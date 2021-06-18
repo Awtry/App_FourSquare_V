@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <converters:ImageConverter x:Key="ImageConverter"/>
         </ResourceDictionary>
+        <StyleSheet Source="/CSS/ListView.css"/>
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems >
@@ -17,7 +18,14 @@
 
     <ContentPage.Content>
         <StackLayout >
-            <Button Text="Add Place" Command="{Binding NewPlaceCommand}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"/>
+            
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Button x:Name="addPlace" Text="Add Place" Command="{Binding NewPlaceCommand}"/>
+                </StackLayout>
+            </StackLayout>
+            
             <CollectionView
                 x:Name="Gas"
                 ItemsSource="{Binding Places}"

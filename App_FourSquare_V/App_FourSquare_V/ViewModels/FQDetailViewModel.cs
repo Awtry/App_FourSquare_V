@@ -37,24 +37,24 @@ namespace App_FourSquare_V.ViewModels
 
         #region ENCAPSULAMIENTO
 
-            int FQ_ID;
+        int FQ_ID;
 
-            string _FQName;
-            public string FQName { get => _FQName; set => SetProperty(ref _FQName, value); }
+        string _FQName;
+        public string FQName { get => _FQName; set => SetProperty(ref _FQName, value); }
 
-            string _FQLocation;
-            public string FQLocation { get => _FQLocation; set => SetProperty(ref _FQLocation, value); }
+        string _FQLocation;
+        public string FQLocation { get => _FQLocation; set => SetProperty(ref _FQLocation, value); }
 
-            double _FQLatitude;
-            public double FQLatitude { get => _FQLatitude; set => SetProperty(ref _FQLatitude, value); }
+        double _FQLatitude;
+        public double FQLatitude { get => _FQLatitude; set => SetProperty(ref _FQLatitude, value); }
 
-            double _FQLongitude;
-            public double FQLongitude { get => _FQLongitude; set => SetProperty(ref _FQLongitude, value); }
+        double _FQLongitude;
+        public double FQLongitude { get => _FQLongitude; set => SetProperty(ref _FQLongitude, value); }
 
-            // ------------------- IMAGEN ---------------------
+        // ------------------- IMAGEN ---------------------
 
-            string _FQPicture;
-            public string FQPicture { get => _FQPicture; set => SetProperty(ref _FQPicture, value); }
+        string _FQPicture;
+        public string FQPicture { get => _FQPicture; set => SetProperty(ref _FQPicture, value); }
 
         #endregion
 
@@ -62,31 +62,31 @@ namespace App_FourSquare_V.ViewModels
 
         #region CONSTRUCTORES 
 
-            private FQModel placeSelected;
-            public FQModel PlaceSelected
-            {
-                get => placeSelected;
-                set => SetProperty(ref placeSelected, value);
-            }
+        FQModel placeSelected;
+        public FQModel PlaceSelected
+        {
+            get => placeSelected;
+            set => SetProperty(ref placeSelected, value);
+        }
 
-            public FQDetailViewModel(FQViewModel FQ_VModel)
-            {
-                FQViewModel = FQ_VModel;
-            }
+        public FQDetailViewModel(FQViewModel FQ_VModel)
+        {
+            FQViewModel = FQ_VModel;
+        }
 
-            public FQDetailViewModel(FQViewModel FQ_VModel, FQModel placeSelected)
-            {
-                FQViewModel = FQ_VModel;
+        public FQDetailViewModel(FQViewModel FQ_VModel, FQModel placeSelected)
+        {
+            FQViewModel = FQ_VModel;
 
-                FQ_ID = placeSelected.Id_Place;
-                FQName = placeSelected.Name;
-                FQLocation = placeSelected.Location;
-                FQPicture = placeSelected.Picture;
-                FQLatitude = placeSelected.Latitude;
-                FQLongitude = placeSelected.Longitude;
-            }
+            FQ_ID = placeSelected.id_Place;
+            FQName = placeSelected.Name;
+            FQLocation = placeSelected.Location;
+            FQPicture = placeSelected.Picture;
+            FQLatitude = placeSelected.Latitude;
+            FQLongitude = placeSelected.Longitude;
+        }
 
-            
+
         #endregion
 
         // ------------------- ACCIONES ---------------------
@@ -99,7 +99,7 @@ namespace App_FourSquare_V.ViewModels
             {
                 FQModel placeSelected = new FQModel
                 {
-                    Id_Place = FQ_ID,
+                    id_Place = FQ_ID,
                     Name = FQName,
                     Location = FQLocation,
                     Latitude = FQLatitude,
@@ -107,7 +107,7 @@ namespace App_FourSquare_V.ViewModels
                     Picture = FQPicture
                 };
 
-                if (placeSelected.Id_Place > 0)
+                if (placeSelected.id_Place > 0)
                 {
                     //Update
                     response = await new ApiService().PutDataAsync("FQ", placeSelected);
@@ -130,8 +130,10 @@ namespace App_FourSquare_V.ViewModels
                 throw;
             }
 
-            //TODO: Agregar la recarga automatica después del agregrar o actualizar.
-           
+            FQViewModel.Reload_Places();
+            Application.Current.MainPage.Navigation.PopAsync();
+            //TODO: Agregar la recarga automatica después del agregar o actualizar.
+
         }
 
         private async void DeleteAction()
@@ -145,6 +147,7 @@ namespace App_FourSquare_V.ViewModels
                 }
 
                 //TODO: Agregar la recarga automática
+                FQViewModel.Reload_Places();
                 Application.Current.MainPage.Navigation.PopAsync();
             }
             catch (Exception)
@@ -245,7 +248,7 @@ namespace App_FourSquare_V.ViewModels
                     return;
 
                 FQPicture = await new ImageService().ConvertImageFilePathToBase64(file.Path);
-              
+
             }
             catch (Exception ex)
             {
@@ -253,6 +256,6 @@ namespace App_FourSquare_V.ViewModels
             }
         }
 
-       
+
     }
 }

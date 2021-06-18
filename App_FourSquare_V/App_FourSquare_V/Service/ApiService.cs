@@ -105,7 +105,7 @@ namespace App_FourSquare_V.Service
 
                 return JsonConvert.DeserializeObject<ResponseModel>(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResponseModel
                 {
@@ -132,7 +132,7 @@ namespace App_FourSquare_V.Service
                     return new ResponseModel
                     {
                         IsSuccess = false,
-                        Message = "Dommage ! Hubo un error al eliminar el lugar"
+                        Message = "Dommage ! There's been an error while trying to erase the place. Please check it out."
                     };
                 }
 

@@ -15,7 +15,6 @@ namespace Web_FourSqueare.Models
 
     public class FQModel
     {
-        /*string ConnectionString = "Server=tcp:driverjivhserver.database.windows.net,1433;Initial Catalog=FourSquare;Persist Security Info=False;User ID=driverjivhuser;Password=Joderjorge@mia22;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";*/
 
         public int id_Place { get; set; }
         public string Name { get; set; }
@@ -56,7 +55,7 @@ namespace Web_FourSqueare.Models
                     return new ResponseModel
                     {
                         IsSuccess = true,
-                        Message = "No han habido problemas al cargar los datos #Winning",
+                        Message = "No problems detected, #Winning",
                         Result = list
                     };
 
@@ -67,7 +66,7 @@ namespace Web_FourSqueare.Models
                 return new ResponseModel
                 {
                     IsSuccess = false,
-                    Message = $"Cuidao ! Ha habido un problema: {ex.Message}",
+                    Message = $"Hey ! Something went wrong... {ex.Message}",
                     Result = null
                 };
             }
@@ -105,7 +104,7 @@ namespace Web_FourSqueare.Models
                     return new ResponseModel
                     {
                         IsSuccess = true,
-                        Message = "No han habido problemas al cargar el dato #Winning",
+                        Message = "No problems detected, #Winning",
                         Result = FQ
                     };
                 }
@@ -115,7 +114,7 @@ namespace Web_FourSqueare.Models
                 return new ResponseModel
                 {
                     IsSuccess = false,
-                    Message = $"Dommage ! Hubo un error: {ex.Message}",
+                    Message = $"Dommage ! There has been an error: {ex.Message}",
                     Result = null
                 };
             }
@@ -129,7 +128,6 @@ namespace Web_FourSqueare.Models
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    /*string comsql = "INSERT INTO Place (Name, Location, Latitude, Longitude, Picture) VALUES(@Name, @Location, @Latitude, @Longitude, @Picture);";*/
 
                     string comsql = "INSERT INTO Place (Name, Location, Latitude, Longitude, Picture) VALUES(@Name, @Location, @Latitude, @Longitude, @Picture); SELECT @@IDENTITY;";
 
@@ -148,7 +146,7 @@ namespace Web_FourSqueare.Models
                             return new ResponseModel
                             {
                                 IsSuccess = true,
-                                Message = "No han habido problemas al cargar los datos #Winning",
+                                Message = "No problem detected, #Winning",
                                 Result = newID
                             };
                         }
@@ -157,7 +155,7 @@ namespace Web_FourSqueare.Models
                             return new ResponseModel
                             {
                                 IsSuccess = false,
-                                Message = "Dommage ! Hubo un error",
+                                Message = "Dommage ! There has been an error",
                                 Result = newID
                             };
                         }
@@ -169,7 +167,7 @@ namespace Web_FourSqueare.Models
                 return new ResponseModel
                 {
                     IsSuccess = false,
-                    Message = $"Dommage ! El error es: {ex.Message}",
+                    Message = $"Dommage ! There has been an error: {ex.Message}",
                     Result = null
                 };
             }
@@ -213,7 +211,7 @@ namespace Web_FourSqueare.Models
                 return new ResponseModel
                 {
                     IsSuccess = false,
-                    Message = $"The Place was no updated, here is the problem mate: ({ex.Message})",
+                    Message = $"The Place was not updated, here is the problem mate: ({ex.Message})",
                     Result = null
                 };
             }
@@ -236,7 +234,7 @@ namespace Web_FourSqueare.Models
                         return new ResponseModel
                         {
                             IsSuccess = true,
-                            Message = "El lugar se eliminó con éxito",
+                            Message = "Place's deleted succesfully ! ",
                             Result = id
                         };
 
@@ -247,7 +245,7 @@ namespace Web_FourSqueare.Models
                 return new ResponseModel
                 {
                     IsSuccess = false,
-                    Message = $"Se generó un error al eliminar el lugar: {ex.Message}",
+                    Message = $"We couldn't erase the place: {ex.Message}",
                     Result = null
                 };
             }
