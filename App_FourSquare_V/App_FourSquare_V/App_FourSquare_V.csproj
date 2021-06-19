@@ -17,9 +17,6 @@
     <None Remove="Renders\NewFile1.txt" />
   </ItemGroup>
 
- 
-
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />

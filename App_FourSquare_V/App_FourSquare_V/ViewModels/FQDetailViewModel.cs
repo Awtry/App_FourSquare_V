@@ -107,21 +107,39 @@ namespace App_FourSquare_V.ViewModels
                     Picture = FQPicture
                 };
 
-                if (placeSelected.id_Place > 0)
+                if (FQ_ID != null && FQName != null && FQLocation != null && FQLatitude != null && FQLongitude != null && FQPicture != null)
                 {
-                    //Update
-                    response = await new ApiService().PutDataAsync("FQ", placeSelected, FQ_ID);
+                    if(FQLatitude <= 90 && FQLongitude <= 180 )
+                    {
+                        if (placeSelected.id_Place > 0)
+                        {
+                            //Update
+                            response = await new ApiService().PutDataAsync("FQ", placeSelected, FQ_ID);
+                        }
+                        else
+                        {
+                            //Post
+                            response = await new ApiService().PostDataAsync("FQ", placeSelected);
+                        }
+
+                        if (response == null || !response.IsSuccess)
+                        {
+                            await Application.Current.MainPage.DisplayAlert("FourSquare_V", $"Error adding the place mate:  {response.Message}", "OK");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("FourSquare_V", $"We're sorry. It seems that either the latitude or longitude is higher than its maximum value. Please make sure to add the correct coordinates.", "OK");
+                        return;
+                    }
+                    
                 }
                 else
                 {
-                    //Post
-                    response = await new ApiService().PostDataAsync("FQ", placeSelected);
-                }
-
-                if (response == null || !response.IsSuccess)
-                {
-                    await Application.Current.MainPage.DisplayAlert("FourSquare_V", $"Error adding the place mate:  {response.Message}", "OK");
+                    await Application.Current.MainPage.DisplayAlert("FourSquare_V", $"We're sorry. It seems that some data is null. Please make sure to add all the information needed.", "OK");
                     return;
+
                 }
             }
             catch (Exception ex)
@@ -260,3 +278,4 @@ namespace App_FourSquare_V.ViewModels
 
     }
 }
+
