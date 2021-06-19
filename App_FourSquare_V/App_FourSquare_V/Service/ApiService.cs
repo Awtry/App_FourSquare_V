@@ -80,7 +80,7 @@ namespace App_FourSquare_V.Service
             }
         }
 
-        public async Task<ResponseModel> PutDataAsync(string controller, object data)
+        public async Task<ResponseModel> PutDataAsync(string controller, object data, int id)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace App_FourSquare_V.Service
                 {
                     BaseAddress = new System.Uri(ApiUrl)
                 };
-                var response = await client.PutAsync(controller, content);
+                var response = await client.PutAsync(controller + "/" + id, content);
                 var result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)

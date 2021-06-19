@@ -110,7 +110,7 @@ namespace App_FourSquare_V.ViewModels
                 if (placeSelected.id_Place > 0)
                 {
                     //Update
-                    response = await new ApiService().PutDataAsync("FQ", placeSelected);
+                    response = await new ApiService().PutDataAsync("FQ", placeSelected, FQ_ID);
                 }
                 else
                 {
@@ -124,10 +124,11 @@ namespace App_FourSquare_V.ViewModels
                     return;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                await Application.Current.MainPage.DisplayAlert("FourSquare_V", $"Error adding the place mate:  {ex.Message}", "OK");
+                return;
             }
 
             FQViewModel.Reload_Places();
