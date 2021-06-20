@@ -56,6 +56,8 @@ namespace App_FourSquare_V.ViewModels
         string _FQPicture;
         public string FQPicture { get => _FQPicture; set => SetProperty(ref _FQPicture, value); }
 
+        
+
         #endregion
 
         // ------------------- CONSTRUCTORES ---------------------
@@ -88,6 +90,8 @@ namespace App_FourSquare_V.ViewModels
 
 
         #endregion
+
+
 
         // ------------------- ACCIONES ---------------------
 

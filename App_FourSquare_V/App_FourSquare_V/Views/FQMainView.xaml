@@ -11,7 +11,6 @@
         <StyleSheet Source="/CSS/ListView.css"/>
     </ContentPage.Resources>
 
- 
     <ContentPage.Content>
 
         <StackLayout BackgroundColor = "CadetBlue">
@@ -21,75 +20,79 @@
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">                
                         <Button x:Name="addPlace" Text="Add Place" Command="{Binding NewPlaceCommand}"/>
                     </StackLayout>
-                </StackLayout>
-
-                <CollectionView
-                    x:Name="Places"
-                    ItemsSource="{Binding Places}"
-                    SelectionChangedCommand="{Binding SelectCommand}"
-                    SelectedItem="{Binding PlaceSelected}"
-                    SelectionMode="Single">
-
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid  >
-
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="150" />
-
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="400" />
-                                    <ColumnDefinition Width="Auto" />
-
-
-                                </Grid.ColumnDefinitions>
-
-                                <Grid x:Name="Photo"
-                                      Grid.Column="0" 
-                                      Grid.Row="0" 
-                                      Margin="0,10,0,0">
-
-                                    <Image 
-                                       Source="{Binding Picture, Converter={StaticResource ImageConverter}}"
-                                       WidthRequest="100"
-                                       HeightRequest="50"
-                                    />
-
-                                </Grid>
-
-                                <Grid x:Name="Description"
-                                      Grid.Column="1"
-                                      Grid.Row="0"
-                                      Margin="0,10,0,0"
-                                      VerticalOptions="Center"
-                                      HorizontalOptions="Center">
-
-                                    <Label 
-                                       Text="{Binding Name, StringFormat='Name: {0}'}"
-                                        FontFamily="ms-appx:///Imp.Dash.Cook/Fonts/ARCADE_I.TTF#Arcade Interlaced"
-                                         FontSize="25"
-                                       Grid.Column="0"
-                                       Grid.Row="0"
-                                    />
-
-
-                                    <Label 
-                                    Text="{Binding Location, StringFormat='Location: {0}'}"
-                                        FontFamily="ms-appx:///Imp.Dash.Cook/Fonts/ARCADE_I.TTF#Arcade Interlaced"
-                                        FontSize="23"
-                                    Grid.Column="0"
-                                    Grid.Row="1"/>
-
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-
-                </CollectionView>
             </StackLayout>
+
+            <CollectionView
+                x:Name="Places"
+                ItemsSource="{Binding Places}"
+                SelectionChangedCommand="{Binding SelectCommand}"
+                SelectedItem="{Binding PlaceSelected}"
+                SelectionMode="Single">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200" />
+                                <RowDefinition />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition />
+                                
+                            </Grid.ColumnDefinitions>
+
+                            
+
+                            <BoxView 
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Color= "#599496" />
+
+
+
+                            <StackLayout Margin="0,10,0,10" >
+                                <Image 
+                                    Source="{Binding Picture, Converter={StaticResource ImageConverter}}"
+                                    Aspect="AspectFill"
+                                    HeightRequest="180"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                />
+                            </StackLayout>
+                           
+                            <BoxView 
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Color= "#538A8C" />
+
+                            <StackLayout  Grid.Column="1"
+                                          Grid.Row="0"
+                                          Margin="10,0,0,0"
+                                          HorizontalOptions="StartAndExpand"
+                                          VerticalOptions="CenterAndExpand"
+                                          >
+                                <Label 
+                                    Text="{Binding Name, StringFormat='Name: {0}'}"
+                                    FontFamily="ms-appx:///Imp.Dash.Cook/Fonts/ARCADE_I.TTF#Arcade Interlaced"
+                                    FontSize="25"
+                                />
+
+                                <Label 
+                                    Text="{Binding Location, StringFormat='Location: {0}'}"
+                                    FontFamily="ms-appx:///Imp.Dash.Cook/Fonts/ARCADE_I.TTF#Arcade Interlaced"
+                                    FontSize="23"
+                                />
+                                
+                            </StackLayout>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
     </ContentPage.Content>
 
 
